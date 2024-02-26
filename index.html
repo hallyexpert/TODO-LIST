@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONLINE TODO LIST</title>
+    <link rel="shortcut icon" href="images/check2-square.svg">
+    <meta name='description' content='代辦清單、線上、ONLINE TODO LIST' />
+
+
+    <meta property="og:title" content="ONLINE TODO LIST" />
+    <meta property="og:description" content="最實用的線上代辦清單，ONLINE TODO LIST">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="FB上的網址" />
+    <meta property="og:image" content="FB的圖片" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@500&family=Noto+Sans+TC:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./stylesheet/all.css">
+
+</head>
+
+<body>
+        <!-- 登入 頁面 -->
+    <div class="bg-warning-subtle vh-100 " id="loginPage">
+        <section class="container py-3 ">
+            <div class="row">
+                <div class="col d-flex flex-column justify-content-center align-item-center d-none d-lg-block">
+                    <h1 class="h1 en-font text-center"><i class="bi bi-check2-square px-2"></i>ONLINE TODO LIST</h1>
+                    <img src="https://dl.ndl.go.jp/api/iiif/2575359/R0000005/1064,776,3600,4952/,800/0/default.jpg" class="img-fluid h-75  w-50 mx-auto d-block " alt="日本持屋千草第5卷動物圖畫">
+                </div>
+                <div class="col d-flex flex-column justify-content-center align-item-center">
+                    <h2 class="h4 fw-bold mb-3">最實用的線上代辦事項服務</h2>
+    
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email address</label>
+                        <input type="email" class="form-control loginEmail" id="Email" aria-describedby="emailHelp" placeholder="xxx@gmail.com" required>
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Password" class="form-label">Password</label>
+                        <input type="password" class="form-control loginPwd" id="Password" required>
+                        <div  class="form-text">At least six characters</div>
+                    </div>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button type="submit" class="btn btn-dark sendLoginBtn">登入</button>
+                        <button type="submit" class="btn btn-outline-secondary signinBtnChange">註冊帳號</button>
+                    </div>
+                    
+                </div>
+            </div>
+    
+        </section>
+    </div>
+
+    <!-- 註冊 頁面 -->
+    <div class="bg-warning-subtle vh-100 none" id="siginPage">
+        <section class="container py-3">
+            <div class="row">
+                <div class="col d-flex flex-column justify-content-center align-item-center d-none d-lg-block">
+                    <h1 class="h1 en-font text-center"><i class="bi bi-check2-square px-2"></i>ONLINE TODO LIST</h1>
+                    <img src="https://dl.ndl.go.jp/api/iiif/2575359/R0000005/1064,776,3600,4952/,800/0/default.jpg"
+                        class="img-fluid h-75  w-50 mx-auto d-block" alt="日本持屋千草第5卷動物圖畫">
+                </div>
+                <div class="col d-flex flex-column justify-content-center align-item-center">
+                    <h2 class="h4 fw-bold mb-3">註冊帳號</h2>
+
+                    <div class="mb-1">
+                        <label for="Emailsignin" class="form-label">Email address</label>
+                        <input type="email" class="form-control signinEmail" id="Emailsignin" aria-describedby="emailHelp"
+                            placeholder="xxx@gmail.com" required>
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-1">
+                        <label for="nickname" class="form-label ">Nickname</label>
+                        <input type="text" class="form-control nickname" id="nickname" aria-describedby="nickname" required>
+                    </div>
+                    <div>
+                        <label for="Passwordsignin" class="form-label ">Password</label>
+                        <input type="password" class="form-control signinPassword" id="Passwordsignin" required>
+                        <div class="form-text">At least six characters</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="PasswordAgain" class="form-label ">再次輸入密碼</label>
+                        <input type="password" class="form-control signinPasswordAgain" id="PasswordAgain" required>
+                    </div>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button type="submit" class="btn btn-dark sendInfoBtn">註冊帳號</button>
+                        <button type="submit" class="btn btn-outline-secondary loginBtnChange">登入</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- todo 頁面 -->
+    <section class=" py-3 todoex none" id="todoPage">
+        <div class="position-absolute top-0 start-0 p-2">
+            <h1 class="fs-6 en-font "><i class="bi bi-check2-square px-2"></i>ONLINE TODO LIST</h1>
+        </div>
+        <div class="position-absolute top-0 end-0 p-2 d-flex justify-content-center align-items-baseline">
+            <p class="d-none d-lg-block mb-0"><span class="showName"></span>的代辦清單</p>
+            <button type="button" class="btn btn-outline-dark signOut">登出</button>
+        </div>
+        <div class="container my-5">
+
+            <div class="card input">
+                <input type="text" placeholder="請輸入待辦事項" class="txt" />
+                <a href="#" class="btn_add">+</a>
+            </div>
+            <div class="card card_list">
+                <ul class="tab list-unstyled">
+                    <li class="all active">全部</li>
+                    <li class="doing">待完成</li>
+                    <li class="done">已完成</li>
+                </ul>
+                <div class="cart_content p-2">
+                    <ul class="list list-unstyled">
+    
+                    </ul>
+                    <div class="list_footer">
+                        <p><span>0 </span>個待完成項目</p>
+                        <a href="#" class="clean">清除已完成項目</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="JS/all.js"></script>
+</body>
+
+</html>
