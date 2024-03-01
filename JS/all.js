@@ -66,22 +66,15 @@ function callSignin() {
   email = signinEmail.value
   short = nickname.value
   pwd = signinPassword.value
-  signUp(email, short, pwd)
-  signinEmail.value = ""
-  nickname.value = ""
-  signinPassword.value = ""
-  signinPasswordAgain.value = ""
-}
-function signUp(email, nickname, pwd) {
+
   axios.post(`${apiUrl}/users`, {
     "user": {
       "email": email,
-      "nickname": nickname,
+      "nickname": short,
       "password": pwd
     }
   })
     .then(res => {
-      console.log(res)
       let timerInterval;
       Swal.fire({
         title: `${res.data.message}!`,
@@ -106,67 +99,86 @@ function signUp(email, nickname, pwd) {
       });
 
     })
-    .catch(err => console.log(err.response.data.error[0]))
+    .catch(err => {
+      Swal.fire({
+        title: err.response.data.message,
+        text: err.response.data.error,
+        icon: "error"
+      });
+    })
+  signinEmail.value = ""
+  nickname.value = ""
+  signinPassword.value = ""
+  signinPasswordAgain.value = ""
 }
 
 
 // 登入
-sendLoginBtn.addEventListener("click", () => callLogin())
-function callLogin() {
+sendLoginBtn.addEventListener("click", () => logIn())
+function logIn() {
   if (loginEmail.value === "" || loginPwd.value === "") {
     Swal.fire("帳號或密碼不得為空!");
     return
   }
   email = loginEmail.value
   password = loginPwd.value
-  logIn(email, password)
-  changePage(sendLoginBtn)
-  callAll()
-  loginEmail.value = ""
-  loginPwd.value = ""
-}
-function logIn(email, pwd) {
+
+
   axios.post(`${apiUrl}/users/sign_in`, {
     "user": {
       "email": email,
-      "password": pwd
+      "password": password
     }
   })
     .then(res => {
       axios.defaults.headers.common['Authorization'] = res.headers.authorization
       showName.textContent = res.data.nickname
       getTodo()
-
+      changePage(sendLoginBtn)
     })
-    .catch(err => console.log(err.response))
+    .catch(err => {
+      console.log(err.response)
+      Swal.fire({
+        title: "錯誤!",
+        text: err.response.data.message,
+        icon: "error"
+      });
+    })
+
+
+  callAll()
+  loginEmail.value = ""
+  loginPwd.value = ""
 }
 
 // 登出
-signOut.addEventListener("click", () => signoutTodo())
-
-function signoutTodo() {
-  axios.delete(`${apiUrl}/users/sign_out`)
+signOut.addEventListener("click", () => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "確定要登出嗎?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes"
+  })
+  .then((result) => {
+    if (result.isConfirmed) {
+      axios.delete(`${apiUrl}/users/sign_out`)
     .then(() => {
       Swal.fire({
-        title: "Are you sure?",
-        text: "確定要登出嗎?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: "登出成功!",
-            icon: "success"
-          })
-          changePage(signOut)
-        }
-      });
+        title: "登出成功!",
+        icon: "success"
+      })
+      changePage(signOut)
     })
     .catch(err => console.log(err.response))
-}
+    }
+  });
+
+
+})
+
 
 // 取得
 let todoData = []
@@ -248,7 +260,7 @@ function deleteTodo(todoId) {
   axios.delete(`${apiUrl}/todos/${todoId}`)
     .then(() => {
       getTodo()
-     
+
     })
     .catch(err => {
       message = err.response.data.message
